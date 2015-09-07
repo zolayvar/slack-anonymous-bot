@@ -38,6 +38,7 @@ function onMessageToEdwardSnowden (message) {
 }
 
 slack.on('message', function (message) {
+  console.log('message received ' + message);
   var channelGroupOrDM = slack.getChannelGroupOrDMByID(message.channel);
   if (channelGroupOrDM.is_im) {
     onMessageToEdwardSnowden(message);
@@ -49,6 +50,13 @@ slack.on('error', function (error) {
 });
 
 slack.login();
+
+
+
+
+
+
+
 
 // I don't want this app to crash in case someone sends an HTTP request, so lets implement a simple server
 //Lets define a port we want to listen to
