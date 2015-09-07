@@ -17,10 +17,6 @@ function onMessageToEdwardSnowden (message) {
     return;
   }
 
-  function randomUsername () {
-    return Math.random().toString(36).substring(2);
-  }
-
   function randomHexColor() {
     return Math.random().toString(16).substring(2, 2+6);
   }
@@ -32,12 +28,12 @@ function onMessageToEdwardSnowden (message) {
 
   var response = {
     text: text,
-    username: anonymousUser,
+    username: 'anonymous',
     icon_url: anonymousIcon
   };
 
   // post message to #random
-  var anonymousChannel = slack.getChannelByName('random');
+  var anonymousChannel = slack.getChannelByName('testing');
   anonymousChannel.postMessage(response);
 }
 
