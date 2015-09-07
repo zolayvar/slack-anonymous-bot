@@ -17,10 +17,6 @@ function onMessageToEdwardSnowden (message) {
     return;
   }
 
-  function randomUsername () {
-    return Math.random().toString(36).substring(2);
-  }
-
   function randomHexColor() {
     return Math.random().toString(16).substring(2, 2+6);
   }
@@ -37,7 +33,7 @@ function onMessageToEdwardSnowden (message) {
   };
 
   // post message to #random
-  var anonymousChannel = slack.getChannelByName('random');
+  var anonymousChannel = slack.getChannelByName('gripes-gratitude');
   anonymousChannel.postMessage(response);
 }
 
