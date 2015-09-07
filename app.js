@@ -17,18 +17,22 @@ function onMessageToEdwardSnowden (message) {
     return;
   }
 
+  function randomUsername () {
+    return Math.random().toString(36).substring(2);
+  }
+
   function randomHexColor() {
     return Math.random().toString(16).substring(2, 2+6);
   }
 
   var text = message.text;
-  var anonymousUser = randomUsername();
+  var anonymousUser = 'anonymous';
   var someColor = randomHexColor();
   var anonymousIcon = 'http://placehold.it/80/' + someColor + '/'+ someColor;
 
   var response = {
     text: text,
-    username: 'anonymous',
+    username: anonymousUser,
     icon_url: anonymousIcon
   };
 
@@ -38,7 +42,6 @@ function onMessageToEdwardSnowden (message) {
 }
 
 slack.on('message', function (message) {
-  console.log('message received ' + message);
   var channelGroupOrDM = slack.getChannelGroupOrDMByID(message.channel);
   if (channelGroupOrDM.is_im) {
     onMessageToEdwardSnowden(message);
@@ -51,20 +54,14 @@ slack.on('error', function (error) {
 
 slack.login();
 
-
-
-
-
-
-
-
 // I don't want this app to crash in case someone sends an HTTP request, so lets implement a simple server
 //Lets define a port we want to listen to
 const PORT = process.env.PORT || 3000;
 
 //We need a function which handles requests and send response
 function handleRequest(request, response){
-    response.end('quote');
+    var quote = "The NSA has built an infrastructure that allows it to intercept almost everything. With this capability, the vast majority of human communications are automatically ingested without targeting. If I wanted to see your emails or your wife's phone, all I have to do is use intercepts. I can get your emails, passwords, phone records, credit cards. I don't want to live in a society that does these sort of things... I do not want to live in a world where everything I do and say is recorded. That is not something I am willing to support or live under.\n\n-Edward Snowden, NSA files source: 'If they want to get you, in time they will', The Guardian, 10 June 2013.";
+    response.end(quote);
 }
 
 //Create a server
